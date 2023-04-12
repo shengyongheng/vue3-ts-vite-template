@@ -40,5 +40,7 @@ export default defineConfig({
     },
     // 导入时想要省略的扩展名列表
     extensions: ['.vue', '.ts', '.json'],
-  }
+  },
+  // 打包配置
+  build: {}
 })
