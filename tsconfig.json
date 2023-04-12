@@ -20,8 +20,12 @@
     "paths": {
       "@/*": [
         "src/*"
+      ],
+      "@@/*": [
+        "src/components/*"
       ]
     },
+    // "declaration": false, // 是否自动生成声明文件配置
   },
   "include": [
     "src/**/*.ts",
