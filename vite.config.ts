@@ -19,6 +19,18 @@ export default defineConfig({
       }
     }
   },
+  css: {
+    // CSS 预处理器
+    preprocessorOptions: {
+      //define global scss
+      scss: {
+        javascriptEnabled: true,
+        additionalData: `
+          @use "@/styles/global.scss" as *;
+        `
+      }
+    }
+  },
   resolve: {
     // 路径别名
     alias: {
