@@ -22,4 +22,7 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
     app.component(key, component)
 }
 
+// 环境变量
+// console.log(import.meta.env, 'import.meta.env');
+
 app.use(router).use(ElementPlus).use(pinia).mount('#app')

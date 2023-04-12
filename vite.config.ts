@@ -5,6 +5,7 @@ import { resolve } from "path"
 export default defineConfig({
   plugins: [vue()],
   server: {
+    open: true, // 是否自动打开浏览器
     proxy: {
       '/api': { // 匹配请求路径，
         target: 'http://xxx.xxx.xxx/', // 代理的目标地址
@@ -35,7 +36,9 @@ export default defineConfig({
     // 路径别名
     alias: {
       "@": resolve(__dirname, "./src"), // __dirname 可能会报错，需要安装 npm install @types/node
-      "@@": resolve(__dirname, "./src/components"),
-    }
+      "@c": resolve(__dirname, "./src/components"),
+    },
+    // 导入时想要省略的扩展名列表
+    extensions: ['.vue', '.ts', '.json'],
   }
 })
