@@ -15,6 +15,7 @@ onMounted(() => {
     console.log('组件挂载到页面之后执行-------onMounted')
     console.log(eleRef.value)
     ElMessage.success("全局提示")
+    homeStore.name = "Home"
 })
 
 </script>
