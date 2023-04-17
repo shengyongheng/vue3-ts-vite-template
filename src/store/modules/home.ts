@@ -5,7 +5,7 @@ interface AppState {
     name?: string
 }
 
-export const useAppStore = defineStore("app", {
+export default defineStore("home", {
     // 相当于data
     state: (): AppState => {
         return {

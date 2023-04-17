@@ -3,9 +3,9 @@ import { ref, reactive, onMounted } from 'vue'
 import { storeToRefs } from "pinia"
 import { DataType } from "./types"
 import { ElMessage } from 'element-plus'
-import { useAppStore } from "@/store/app"
-const appStore = useAppStore()
-let { name } = storeToRefs(appStore)
+import useStore from "@/store"
+const { homeStore } = useStore()
+let { name } = storeToRefs(homeStore)
 const data = reactive<DataType>({
     name: "衡盛永"
 })
@@ -20,7 +20,7 @@ onMounted(() => {
 </script>
 <template>
     <div class="home" ref="eleRef">
-        appStore.name: {{ name }}
+        homeStore.name: {{ name }}
         <br />
         data.name:{{ data.name }}
     </div>
