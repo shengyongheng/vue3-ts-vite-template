@@ -2,7 +2,7 @@
  * @desc 获取token
  */
 export const getToken = (): string => {
-    return JSON.parse(window.localStorage.getItem('token') || '');
+    return JSON.parse(window.localStorage.getItem('token') || '{}');
 }
 /**
  * @desc 获取localStorage

@@ -26,7 +26,7 @@ export class Request {
         // 请求拦截器
         this.instance.interceptors.request.use(
             (config: InternalAxiosRequestConfig) => {
-                const token = getToken() as string
+                const token = getToken()
                 if (token) {
                     config.headers!.Authorization = token;
                 }

@@ -13,6 +13,12 @@ let routes: RouteRecordRaw[] = [
         meta: {},
         component: () => import('../views/home/index.vue')
     },
+    {
+        path: '/login',
+        name: 'login',
+        meta: {},
+        component: () => import('../views/login/index.vue')
+    },
     //{
     //配置404页面
     //path: '/:catchAll(.*)',
