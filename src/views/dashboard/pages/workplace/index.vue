@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <router-view />
+    workpace
 </template>
 
 <style scoped lang="scss"></style>
