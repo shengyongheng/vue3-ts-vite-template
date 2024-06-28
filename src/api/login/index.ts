@@ -1,8 +1,8 @@
-import request from "../../utils/request"
+import request from "@/utils/request";
 
-const login = (url: string, params: any) => {
-    return request.get(url, params)
-}
+const login = (params: any) => {
+  return request.get("url", params);
+};
 export default {
-    login
-}
+  login,
+};
