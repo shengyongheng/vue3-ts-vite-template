@@ -1,5 +1,5 @@
 <template>
-    <el-dialog v-model="props.visible" title="添加学生" width="500" @close="emit('unvisible')">
+    <el-dialog v-model="props.visible" title="添加学生" width="500" @close="emits('unvisible', false)">
         <el-form :model="form" ref="undergraduateForm">
             <el-form-item label="姓名" prop="name" :label-width="formLabelWidth">
                 <el-input v-model="form.name" placeholder="请输入姓名" />
@@ -32,13 +32,14 @@ import { addUndergraduate } from "../../../../services/workplace"
 
 const undergraduateForm = ref<FormInstance>()
 const formLabelWidth = '140px'
-const emit = defineEmits(['unvisible'])
+const emits = defineEmits(['unvisible'])
 const props = defineProps({
     visible: {
         type: Boolean,
         default: false
     }
 })
+console.log(props, 'props');
 
 const form = reactive({
     name: '',
@@ -48,16 +49,15 @@ const form = reactive({
 const cancel = (form: FormInstance | undefined) => {
     if (!form) return
     form.resetFields()
-    emit('unvisible')
+    emits('unvisible')
 }
 const confirm = async (formInstance: FormInstance | undefined) => {
     if (!formInstance) return
     await formInstance.validate((valid, fields) => {
         if (valid) {
-            addUndergraduate(form).then(res => {
-                console.log(res, 'res');
-
-            })
+            // addUndergraduate(form).then(res => {
+            //     console.log(res, 'res');
+            // })
             cancel(formInstance)
         } else {
             console.log('error submit!', fields)

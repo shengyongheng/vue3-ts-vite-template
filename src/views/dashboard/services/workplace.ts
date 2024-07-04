@@ -1,9 +1,9 @@
-import request from "@/utils/request";
+import request from '@/utils/request'
 const addUndergraduate = (params: {
-  name: string;
-  age: string;
-  sex: string;
+  name: string
+  age: string
+  sex: string
 }) => {
-  return request.post("/add-undergraduate", params);
-};
-export { addUndergraduate };
+  return request.post('/api/add-undergraduate', params)
+}
+export { addUndergraduate }
