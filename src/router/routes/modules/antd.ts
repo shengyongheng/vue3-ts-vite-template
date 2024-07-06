@@ -13,6 +13,12 @@ const DASHBOARD: AppRouteRecordRaw = {
       name: 'table',
       component: () => import('@/views/antd/pages/table/demos/index.vue'),
       meta: {}
+    },
+    {
+      path: 'form',
+      name: 'form',
+      component: () => import('@/views/antd/pages/form/demos/index.vue'),
+      meta: {}
     }
   ]
 }

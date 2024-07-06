@@ -19,4 +19,12 @@ interface ITableProps<T = any> extends TableProps<T> {
   pigination?: IPiginationProps // 分页配置
 }
 
-export type { ITableProps }
+interface ISortChangeParams {
+  column: any, prop: string, order: any
+}
+
+interface IFilterChangeParams {
+  [key: string]: string[]
+}
+
+export type { ITableProps, ISortChangeParams, IFilterChangeParams }

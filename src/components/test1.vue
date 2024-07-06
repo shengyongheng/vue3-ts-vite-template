@@ -11,7 +11,7 @@ const { data } = defineProps({
         default: () => ({})
     }
 })
-console.log(data, 'data')
+// console.log(data, 'data')
 </script>
 
 <style lang="scss" scoped></style>
