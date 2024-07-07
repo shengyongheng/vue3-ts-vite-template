@@ -28,7 +28,7 @@ export default defineComponent({
     const data = reactive({
       name: "你好",
     });
-    onMounted(() => {});
+    onMounted(() => { });
     const computedName = computed(() => {
       return data.name + "!";
     });

@@ -15,7 +15,7 @@ export default {
   methods: {},
   mounted() {},
   created() {},
-  destroyed() {},
+  unmounted() {},
   computed: {},
   watch: {},
 };

@@ -9,7 +9,7 @@ import type {
   AxiosResponse
 } from 'axios'
 // 环境变量取值
-let env = import.meta.env.MODE as 'development' | 'production'
+const env = import.meta.env.MODE as 'development' | 'production'
 
 // 假设我们某个项目后端接口不管请求成功与失败，返回的结构永远是code、message、results的话我们可以定义一个这样的数据类型。
 interface Result<T> {
@@ -54,7 +54,7 @@ export class Request {
       (err: any) => {
         // 这里用来处理http常见错误，进行全局提示
         let message = ''
-        let status = err.response?.status
+        const status = err.response?.status
         switch (status) {
           case 400:
             message = '请求错误(400)'
