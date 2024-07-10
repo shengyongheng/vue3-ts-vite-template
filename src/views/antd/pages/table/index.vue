@@ -19,14 +19,8 @@
       :column-key="column.columnKey"
       :filter-multiple="column.filterMultiple"
     >
-      <template
-        v-if="column.slot"
-        #default="scope"
-      >
-        <slot
-          :name="column.slot"
-          :row="scope.row"
-        />
+      <template v-if="column.slot" #default="scope">
+        <slot :name="column.slot" :row="scope.row" />
       </template>
     </el-table-column>
   </el-table>
@@ -64,7 +58,6 @@ const emits = defineEmits<{
 const multipleTableRef = ref<InstanceType<typeof ElTable>>();
 
 const filters = reactive<IFilterChangeParams>({});
-var a = 1;
 onMounted(() => {
   if (dataSource.columns) {
     dataSource.columns.forEach((item) => {
@@ -76,7 +69,7 @@ onMounted(() => {
 });
 
 const computedColumns = computed(() =>
-  dataSource.columns.filter((item) => !item.hidden)
+  dataSource.columns.filter((item) => !item.hidden),
 );
 const handleSizeChange = (pageSize: number) => {
   console.log(pageSize, "pageSize-Table");

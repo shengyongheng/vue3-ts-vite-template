@@ -17,6 +17,11 @@
 const pluginVue = require("eslint-plugin-vue");
 const vueParser = require("vue-eslint-parser");
 const typescriptParser = require("@typescript-eslint/parser");
+import { FlatCompat } from "@eslint/eslintrc";
+
+const compat = new FlatCompat({
+  baseDirectory: __dirname,
+});
 
 module.exports = [
   {
@@ -47,6 +52,7 @@ module.exports = [
     },
   },
   ...pluginVue.configs["flat/recommended"],
+  ...compat.extends("plugin:prettier/recommended"),
   {
     files: ["**/*.vue"],
     languageOptions: {
@@ -64,6 +70,7 @@ module.exports = [
       quotes: ["error", "double"], // 使用双引号
       eqeqeq: ["error", "smart"], // 比较的时候使用严格等于
       "no-unused-vars": "off", // 禁止出现未使用过的变量
+      "no-var": ["error"], // 不能使用 var 定义变量
       "default-case": "error", // 要求 switch 语句中有 default 分支
       // "brace-style": ["error", "stroustrup", { allowSingleLine: true }], // 大括号风格 ["error", "stroustrup"]
       // "no-dupe-keys": "error", // 对象中不允许出现重复的键
