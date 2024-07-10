@@ -7,9 +7,11 @@
     "dev": "vite",
     "build": "vue-tsc && vite build",
     "preview": "vite preview",
+    "lint:lint-staged": "lint-staged",
     "lint:eslint": "eslint --cache --max-warnings 0  \"{src,mock}/**/*.{vue,ts,tsx}\" --fix",
     "format": "prettier --write .",
-    "lint:css": "stylelint '**/*.{css,scss,vue}' --fix"
+    "lint:css": "stylelint '**/*.{css,scss,vue}' --fix",
+    "prepare": "husky"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.1.0",
@@ -37,6 +39,8 @@
     "eslint-plugin-prettier": "^5.1.3",
     "eslint-plugin-vue": "^9.27.0",
     "globals": "^15.8.0",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.7",
     "postcss": "^8.4.39",
     "postcss-html": "^1.7.0",
     "postcss-import": "^16.1.0",
@@ -58,5 +62,26 @@
     "vite-plugin-eslint": "^1.8.1",
     "vue-eslint-parser": "^9.4.3",
     "vue-tsc": "^1.2.0"
+  },
+  "lint-staged": {
+    "*.{js,ts,vue}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{cjs,json}": [
+      "prettier --write"
+    ],
+    "*.{vue,html}": [
+      "eslint --fix",
+      "prettier --write",
+      "stylelint --fix"
+    ],
+    "*.{scss,css}": [
+      "stylelint --fix --allow-empty-input",
+      "prettier --write"
+    ],
+    "*.md": [
+      "prettier --write"
+    ]
   }
 }
