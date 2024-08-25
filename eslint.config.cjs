@@ -14,13 +14,13 @@
 
 // 自定义配置
 // eslint.config.js
+const { FlatCompat } = require("@eslint/eslintrc");
 const pluginVue = require("eslint-plugin-vue");
 const vueParser = require("vue-eslint-parser");
 const typescriptParser = require("@typescript-eslint/parser");
-import { FlatCompat } from "@eslint/eslintrc";
 
 const compat = new FlatCompat({
-  baseDirectory: __dirname,
+  baseDirectory: __dirname
 });
 
 module.exports = [
@@ -29,7 +29,7 @@ module.exports = [
       "**/node_modules/**/*",
       "**/dist/**/*",
       "**/lib/**/*",
-      "**/types/**/*.d.ts",
+      "**/types/**/*.d.ts"
     ],
     files: [
       "**/*.ts",
@@ -37,8 +37,8 @@ module.exports = [
       "**/*.vue",
       "**/*.js",
       "**/*.jsx",
-      "**/*.cjs",
-    ],
+      "**/*.cjs"
+    ]
   },
   {
     plugins: { typescriptParser },
@@ -47,9 +47,9 @@ module.exports = [
       parserOptions: {
         ecmaVersion: "latest",
         sourceType: "module",
-        extraFileExtensions: [".vue", ".ts", ".tsx", "css"],
-      },
-    },
+        extraFileExtensions: [".vue", ".ts", ".tsx", "css"]
+      }
+    }
   },
   ...pluginVue.configs["flat/recommended"],
   ...compat.extends("plugin:prettier/recommended"),
@@ -60,9 +60,9 @@ module.exports = [
       parserOptions: {
         parser: typescriptParser,
         sourceType: "module",
-        jsx: true,
-      },
-    },
+        jsx: true
+      }
+    }
   },
   {
     rules: {
@@ -71,7 +71,7 @@ module.exports = [
       eqeqeq: ["error", "smart"], // 比较的时候使用严格等于
       "no-unused-vars": "off", // 禁止出现未使用过的变量
       "no-var": ["error"], // 不能使用 var 定义变量
-      "default-case": "error", // 要求 switch 语句中有 default 分支
+      "default-case": "error" // 要求 switch 语句中有 default 分支
       // "brace-style": ["error", "stroustrup", { allowSingleLine: true }], // 大括号风格 ["error", "stroustrup"]
       // "no-dupe-keys": "error", // 对象中不允许出现重复的键
       // "no-sparse-arrays": "error", // 禁止稀疏数组， [1,,2]
@@ -102,6 +102,6 @@ module.exports = [
       // "no-trailing-spaces": "error", // 一行最后不允许有空格
       // "switch-colon-spacing": ["error", { before: false, after: true }], // switch 冒号后要有空格
       // "no-multi-spaces": "error", // 不允许出现多余的空格
-    },
-  },
+    }
+  }
 ];

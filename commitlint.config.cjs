@@ -3,6 +3,10 @@ module.exports = {
   // @see: https://commitlint.js.org/#/reference-rules
   rules: {
     "subject-case": [0], // subject大小写不做校验
+    "body-empty": [2, "always"],
+    "footer-empty": [2, "always"],
+    "type-empty": [2, "never"],
+    "scope-empty": [2, "never"],
 
     // 类型枚举，git提交type必须是以下类型
     "type-enum": [
