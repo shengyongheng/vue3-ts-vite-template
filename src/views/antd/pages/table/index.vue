@@ -1,6 +1,11 @@
 <template>
-  <el-table ref="multipleTableRef" :data="dataSource.data" style="width: 100%" @sort-change="handleSortChange" 
-    @filter-change="handleFilterChange">
+  <el-table
+    ref="multipleTableRef"
+    :data="dataSource.data"
+    style="width: 100%"
+    @sort-change="handleSortChange"
+    @filter-change="handleFilterChange"
+  >
     <el-table-column
       v-for="column in computedColumns"
       :key="column.prop"
@@ -14,14 +19,14 @@
       :column-key="column.columnKey"
       :filter-multiple="column.filterMultiple"
     >
-      <template #default="scope" v-if="column.slot">
-        <slot :name="column.slot" :row="scope.row"></slot>
+      <template v-if="column.slot" #default="scope">
+        <slot :name="column.slot" :row="scope.row" />
       </template>
     </el-table-column>
   </el-table>
   <el-pagination
     v-if="dataSource?.pigination"
-    :currentPage="dataSource?.pigination?.currentPage"
+    :current-page="dataSource?.pigination?.currentPage"
     :page-size="dataSource?.pigination?.pageSize"
     :page-sizes="[1, 2, 3, 4, 5]"
     layout="total, sizes, prev, pager, next, jumper"
@@ -32,59 +37,61 @@
 </template>
 
 <script lang="ts" setup>
-import { ElTable } from 'element-plus'
-import { computed, onMounted, reactive, ref } from 'vue'
-import type { ITableProps, ISortChangeParams, IFilterChangeParams } from './type'
+import { ElTable } from "element-plus";
+import { computed, onMounted, reactive, ref } from "vue";
+import { ITableProps, ISortChangeParams, IFilterChangeParams } from "./type";
 interface IProps {
-  tableRef?: InstanceType<typeof ElTable>
-  dataSource: ITableProps<any>
+  tableRef?: InstanceType<typeof ElTable>;
+  dataSource: ITableProps<any>;
 }
-const { dataSource } = defineProps<IProps>()
+const { dataSource } = defineProps<IProps>();
+defineOptions({
+  name: "MyTable",
+});
 const emits = defineEmits<{
-  (event: 'sizeChange', pageSize: number): void
-  (event: 'currentChange', currentPage: number): void
-  (event: 'sortChange', data: ISortChangeParams): void
-  (event: 'filterChange', data: IFilterChangeParams): void
-}>()
+  (event: "sizeChange", pageSize: number): void;
+  (event: "currentChange", currentPage: number): void;
+  (event: "sortChange", data: ISortChangeParams): void;
+  (event: "filterChange", data: IFilterChangeParams): void;
+}>();
 
-const multipleTableRef = ref<InstanceType<typeof ElTable>>()
+const multipleTableRef = ref<InstanceType<typeof ElTable>>();
 
-const filters = reactive<IFilterChangeParams>({})
-
+const filters = reactive<IFilterChangeParams>({});
 onMounted(() => {
-  if(dataSource.columns){
-    dataSource.columns.forEach(item => {
-      if(item.columnKey){
-        filters[item.columnKey] = []
+  if (dataSource.columns) {
+    dataSource.columns.forEach((item) => {
+      if (item.columnKey) {
+        filters[item.columnKey] = [];
       }
-    })
+    });
   }
-})
+});
 
 const computedColumns = computed(() =>
-  dataSource.columns.filter(item => !item.hidden)
-)
+  dataSource.columns.filter((item) => !item.hidden),
+);
 const handleSizeChange = (pageSize: number) => {
-  console.log(pageSize, 'pageSize-Table')
-  emits('sizeChange', pageSize)
-}
+  console.log(pageSize, "pageSize-Table");
+  emits("sizeChange", pageSize);
+};
 const handleCurrentChange = (currentPage: number) => {
-  console.log(currentPage, 'currentPage-Table')
-  emits('currentChange', currentPage)
-}
+  console.log(currentPage, "currentPage-Table");
+  emits("currentChange", currentPage);
+};
 
-const handleSortChange = (data:ISortChangeParams) => {
-  console.log(data, 'sort-Table')
-  emits('sortChange', data)
-}
+const handleSortChange = (data: ISortChangeParams) => {
+  console.log(data, "sort-Table");
+  emits("sortChange", data);
+};
 
 const handleFilterChange = (filter: IFilterChangeParams) => {
-  const newfilters = {...filters, ...filter}
-  filters[Object.keys(filter)[0]] = filter[Object.keys(filter)[0]]
-  emits('filterChange', newfilters)
-}
+  const newfilters = { ...filters, ...filter };
+  filters[Object.keys(filter)[0]] = filter[Object.keys(filter)[0]];
+  emits("filterChange", newfilters);
+};
 
 defineExpose({
   multipleTableRef,
-})
+});
 </script>

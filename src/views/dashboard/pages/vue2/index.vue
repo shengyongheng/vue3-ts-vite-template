@@ -5,18 +5,18 @@
 </template>
 
 <script>
-export default {
-  name: "Vue2",
-  data() {
-    return {
-      version: "vue2",
-    };
-  },
-  methods: {},
-  mounted() {},
-  created() {},
-  destroyed() {},
-  computed: {},
-  watch: {},
-};
+  export default {
+    name: "Vue2Test",
+    data() {
+      return {
+        version: "vue2"
+      };
+    },
+    computed: {},
+    watch: {},
+    mounted() {},
+    created() {},
+    unmounted() {},
+    methods: {}
+  };
 </script>

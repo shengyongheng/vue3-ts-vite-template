@@ -9,7 +9,7 @@ export const REDIRECT_MAIN: RouteRecordRaw = {
   component: DEFAULT_LAYOUT,
   meta: {
     requiresAuth: true,
-    hideInMenu: true,
+    hideInMenu: true
   },
   children: [
     // {
@@ -21,11 +21,11 @@ export const REDIRECT_MAIN: RouteRecordRaw = {
     //     hideInMenu: true,
     //   },
     // },
-  ],
+  ]
 };
 
 export const NOT_FOUND_ROUTE: RouteRecordRaw = {
   path: "/:pathMatch(.*)*",
   name: "notFound",
-  component: () => import("@/views/not-found/index.vue"),
+  component: () => import("@/views/not-found/index.vue")
 };
