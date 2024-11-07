@@ -9,5 +9,5 @@ export default {
   bracketSpacing: true, // 箭头函数,只有一个参数的时候,也需要括号
   arrowParens: "always", // 不需要写文件开头的 @prettier
   insertPragma: false, // 不需要自动在文件开头加入 @prettier
-  endOfLine: "auto", // 换行符使用 auto 有些地方说的是推荐使用lf
+  endOfLine: "auto" // 换行符使用 auto 有些地方说的是推荐使用lf
 };

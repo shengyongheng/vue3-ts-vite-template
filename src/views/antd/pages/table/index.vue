@@ -1,53 +1,29 @@
 <template>
-  <el-table
-    ref="multipleTableRef"
-    :data="dataSource.data"
-    style="width: 100%"
-    @sort-change="handleSortChange"
-    @filter-change="handleFilterChange"
-  >
-    <el-table-column
-      v-for="column in computedColumns"
-      :key="column.prop"
-      :prop="column.prop"
-      :label="column.label"
-      :width="column.width"
-      :type="column.type"
-      :filters="column.filters"
-      :sortable="column.sortable"
-      :sort-orders="column.sortOrders"
-      :column-key="column.columnKey"
-      :filter-multiple="column.filterMultiple"
-    >
+  <el-table ref="multipleTableRef" :data="dataSource.data" style="width: 100%" @sort-change="handleSortChange"
+    @filter-change="handleFilterChange">
+    <el-table-column v-for="column in computedColumns" :key="column.prop" :prop="column.prop" :label="column.label"
+      :width="column.width" :type="column.type" :filters="column.filters" :sortable="column.sortable"
+      :sort-orders="column.sortOrders" :column-key="column.columnKey" :filter-multiple="column.filterMultiple">
       <template v-if="column.slot" #default="scope">
         <slot :name="column.slot" :row="scope.row" />
       </template>
     </el-table-column>
   </el-table>
-  <el-pagination
-    v-if="dataSource?.pigination"
-    :current-page="dataSource?.pigination?.currentPage"
-    :page-size="dataSource?.pigination?.pageSize"
-    :page-sizes="[1, 2, 3, 4, 5]"
-    layout="total, sizes, prev, pager, next, jumper"
-    :total="dataSource?.pigination?.total"
-    @size-change="handleSizeChange"
-    @current-change="handleCurrentChange"
-  />
+  <el-pagination v-if="dataSource?.pigination" :current-page="dataSource?.pigination?.currentPage"
+    :page-size="dataSource?.pigination?.pageSize" :page-sizes="[1, 2, 3, 4, 5]"
+    layout="total, sizes, prev, pager, next, jumper" :total="dataSource?.pigination?.total"
+    @size-change="handleSizeChange" @current-change="handleCurrentChange" />
 </template>
 
 <script lang="ts" setup>
 import { ElTable } from "element-plus";
 import { computed, onMounted, reactive, ref } from "vue";
-import { ITableProps, ISortChangeParams, IFilterChangeParams } from "./type";
+import { IFilterChangeParams, ISortChangeParams, ITableProps } from "./type";
 interface IProps {
   tableRef?: InstanceType<typeof ElTable>;
   dataSource: ITableProps<any>;
 }
 const { dataSource } = defineProps<IProps>();
-defineOptions({
-  name: "MyTable",
-});
 const emits = defineEmits<{
   (event: "sizeChange", pageSize: number): void;
   (event: "currentChange", currentPage: number): void;

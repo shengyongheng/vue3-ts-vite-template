@@ -71,7 +71,9 @@ module.exports = [
       eqeqeq: ["error", "smart"], // 比较的时候使用严格等于
       "no-unused-vars": "off", // 禁止出现未使用过的变量
       "no-var": ["error"], // 不能使用 var 定义变量
-      "default-case": "error" // 要求 switch 语句中有 default 分支
+      "default-case": "error", // 要求 switch 语句中有 default 分支
+      "prettier/prettier": "off",
+      "vue/multi-word-component-names": "off"
       // "brace-style": ["error", "stroustrup", { allowSingleLine: true }], // 大括号风格 ["error", "stroustrup"]
       // "no-dupe-keys": "error", // 对象中不允许出现重复的键
       // "no-sparse-arrays": "error", // 禁止稀疏数组， [1,,2]

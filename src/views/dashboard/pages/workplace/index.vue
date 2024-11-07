@@ -23,53 +23,43 @@
         <el-button size="small" @click="handleEdit(scope.$index, scope.row)">
           编辑
         </el-button>
-        <el-button
-          size="small"
-          type="danger"
-          @click="handleDelete(scope.$index, scope.row)"
-        >
+        <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)">
           删除
         </el-button>
       </template>
     </el-table-column>
   </el-table>
-  <undergraduate-add-dialog
-    :visible1="undergraduateDialogVisible"
-    @unvisible="unvisible"
-  />
+  <undergraduate-add-dialog :visible1="undergraduateDialogVisible" @unvisible="unvisible" />
 </template>
 
 <script lang="ts" setup>
-  import { ref, watch } from "vue";
-  import UndergraduateAddDialog from "./components/undergraduate-add-dialog/index.vue";
-  defineOptions({
-    // eslint-disable-next-line vue/multi-word-component-names
-    name: "Workplace"
-  });
-  interface User {}
+import { ref } from "vue";
+import UndergraduateAddDialog from "./components/undergraduate-add-dialog/index.vue";
 
-  const undergraduateDialogVisible = ref(false);
-  const undergraduateDialogVisible2 = ref(false);
+interface User { }
 
-  const handleEdit = (index: number, row: User) => {
-    console.log(index, row);
-  };
-  const handleDelete = (index: number, row: User) => {
-    console.log(index, row);
-  };
+const undergraduateDialogVisible = ref(false);
+const undergraduateDialogVisible2 = ref(false);
 
-  const undergraduateAdd = () => {
-    undergraduateDialogVisible.value = true;
-  };
-  const unvisible = (visible: boolean) => {
-    undergraduateDialogVisible.value = visible;
-  };
+const handleEdit = (index: number, row: User) => {
+  console.log(index, row);
+};
+const handleDelete = (index: number, row: User) => {
+  console.log(index, row);
+};
 
-  const tableData: User[] = [
-    {
-      undergraduate_name: "衡盛永"
-    }
-  ];
+const undergraduateAdd = () => {
+  undergraduateDialogVisible.value = true;
+};
+const unvisible = (visible: boolean) => {
+  undergraduateDialogVisible.value = visible;
+};
+
+const tableData: User[] = [
+  {
+    undergraduate_name: "衡盛永"
+  }
+];
 </script>
 
 <style scoped lang="scss"></style>

@@ -1,11 +1,6 @@
 <!-- eslint-disable vue/no-mutating-props -->
 <template>
-  <el-dialog
-    v-model="props.visible"
-    title="添加学生"
-    width="500"
-    @close="emits('unvisible', false)"
-  >
+  <el-dialog v-model="props.visible" title="添加学生" width="500" @close="emits('unvisible', false)">
     <el-form ref="undergraduateForm" :model="form">
       <el-form-item label="姓名" prop="name" :label-width="formLabelWidth">
         <el-input v-model="form.name" placeholder="请输入姓名" />
@@ -31,44 +26,41 @@
 </template>
 
 <script lang="ts" setup>
-  import { reactive, ref } from "vue";
-  import type { FormInstance, FormRules } from "element-plus";
-  import { addUndergraduate } from "../../../../services/workplace";
-  defineOptions({
-    name: "UndergraduateAddDialog"
-  });
-  const undergraduateForm = ref<FormInstance>();
-  const formLabelWidth = "140px";
-  const emits = defineEmits(["unvisible"]);
-  const props = defineProps({
-    visible: {
-      type: Boolean,
-      default: false
+import type { FormInstance } from "element-plus";
+import { reactive, ref } from "vue";
+
+const undergraduateForm = ref<FormInstance>();
+const formLabelWidth = "140px";
+const emits = defineEmits(["unvisible"]);
+const props = defineProps({
+  visible: {
+    type: Boolean,
+    default: false
+  }
+});
+console.log(props, "props");
+
+const form = reactive({
+  name: "",
+  sex: "",
+  age: ""
+});
+const cancel = (form: FormInstance | undefined) => {
+  if (!form) return;
+  form.resetFields();
+  emits("unvisible");
+};
+const confirm = async (formInstance: FormInstance | undefined) => {
+  if (!formInstance) return;
+  await formInstance.validate((valid, fields) => {
+    if (valid) {
+      // addUndergraduate(form).then(res => {
+      //     console.log(res, 'res');
+      // })
+      cancel(formInstance);
+    } else {
+      console.log("error submit!", fields);
     }
   });
-  console.log(props, "props");
-
-  const form = reactive({
-    name: "",
-    sex: "",
-    age: ""
-  });
-  const cancel = (form: FormInstance | undefined) => {
-    if (!form) return;
-    form.resetFields();
-    emits("unvisible");
-  };
-  const confirm = async (formInstance: FormInstance | undefined) => {
-    if (!formInstance) return;
-    await formInstance.validate((valid, fields) => {
-      if (valid) {
-        // addUndergraduate(form).then(res => {
-        //     console.log(res, 'res');
-        // })
-        cancel(formInstance);
-      } else {
-        console.log("error submit!", fields);
-      }
-    });
-  };
+};
 </script>
